@@ -1,4 +1,4 @@
-
+import bgImage from "../../../public/background.png";
 export function HeroSection() {
   const handleRSVP = () => {
     const el = document.querySelector("#rsvp");
@@ -13,7 +13,7 @@ export function HeroSection() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="/background.png"
+          src={bgImage}
           alt="Wedding ceremony aisle with floral arrangements"
           className="w-full h-full object-cover object-center"
         />
