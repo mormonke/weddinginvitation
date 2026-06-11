@@ -1,11 +1,12 @@
 import bgImage from "../../../public/background.png";
+
 export function HeroSection() {
   const handleRSVP = () => {
     const el = document.querySelector("#rsvp");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-   return (
+  return (
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
@@ -26,7 +27,7 @@ export function HeroSection() {
       <div className="relative z-10 flex flex-col items-center text-center px-6 pt-24 pb-16 max-w-4xl mx-auto">
         {/* Pre-heading */}
         <p
-          className="text-[11px] uppercase tracking-[0.35em] text-[#E7EAE3] mb-8"
+          className="text-[10px] uppercase tracking-[0.15em] text-[#E7EAE3] mb-8 px-4 text-center"
           style={{ fontFamily: "'Lato', sans-serif" }}
         >
           Приглашаем вас на торжественное событие!
@@ -70,19 +71,20 @@ export function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={handleRSVP}
-            className="px-10 py-3.5  text-[#E7EAE3] text-[11px] uppercase tracking-[0.25em] hover:bg-[#3951118a] transition-colors"
+            className="px-10 py-3.5 text-[#E7EAE3] text-[11px] uppercase tracking-[0.25em] hover:bg-[#3951118a] transition-colors"
             style={{ fontFamily: "'Lato', sans-serif" }}
           >
             Заполнить анкету
           </button>
-          
         </div>
 
         {/* Scroll indicator */}
         <div className="mt-16 flex flex-col items-center gap-2 opacity-60">
           <div className="w-px h-10 bg-[#ffffff] animate-pulse" />
-          <span className="text-[9px] uppercase tracking-[0.3em] text-[#ffffff]"
-            style={{ fontFamily: "'Lato', sans-serif" }}>
+          <span
+            className="text-[9px] uppercase tracking-[0.3em] text-[#ffffff]"
+            style={{ fontFamily: "'Lato', sans-serif" }}
+          >
             Scroll
           </span>
         </div>
