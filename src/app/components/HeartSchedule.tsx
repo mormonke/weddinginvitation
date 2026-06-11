@@ -238,7 +238,7 @@ export function HeartSchedule({
       {count === 0 ? (
         <IntroScreen title={title} subtitle={subtitle} isMobile={isMobile} />
       ) : isMobile ? (
-        <MobileLayout items={items} count={count} onActive={setActiveId} />
+        <MobileLayout items={items} count={count} onActive={setActiveId} reveal={reveal} />
       ) : (
         <DesktopLayout items={items} count={count} onActive={setActiveId} />
       )}
@@ -364,7 +364,7 @@ function DesktopLayout({ items, count, onActive }: { items: ScheduleItem[]; coun
 // Each card gets a subtle fixed tilt so the stack looks organic
 const TILTS = [-2, 1.5, -1, 2.5, -1.8, 1, -2.2, 1.8];
 
-function MobileLayout({ items, count, onActive }: { items: ScheduleItem[]; count: number; onActive: (id: number | null) => void }) {
+function MobileLayout({ items, count, onActive, reveal }: { items: ScheduleItem[]; count: number; onActive: (id: number | null) => void; reveal: () => void }) {
   const currentItem  = items[count - 1];
   const lastCardRef  = useRef<HTMLDivElement>(null);
   const [expandedId, setExpandedId] = useState<number | null>(null);
@@ -496,6 +496,31 @@ function MobileLayout({ items, count, onActive }: { items: ScheduleItem[]; count
         })}
       </div>
 
+      {/* Tap to reveal button — shown while cards are being revealed */}
+      <AnimatePresence>
+        {count < items.length && (
+          <motion.button
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            onClick={reveal}
+            style={{
+              flexShrink: 0,
+              marginTop: 12,
+              display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
+              background: "none", border: "none", cursor: "pointer",
+              padding: "8px 20px",
+              zIndex: 50,
+            }}
+          >
+            <TapHint color={currentItem.color} />
+            <span style={{ color: currentItem.color, fontFamily: "Georgia, serif", fontSize: "0.75rem", opacity: 0.85 }}>
+              нажми чтобы открыть
+            </span>
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       {/* Tap hint — shown when all cards revealed and nothing expanded yet */}
       <AnimatePresence>
         {count === items.length && expandedId === null && (
@@ -505,12 +530,11 @@ function MobileLayout({ items, count, onActive }: { items: ScheduleItem[]; count
             exit={{ opacity: 0 }}
             transition={{ delay: 0.5 }}
             style={{
-              position: "absolute", bottom: 36, left: "50%", transform: "translateX(-50%)",
+              flexShrink: 0, marginTop: 12,
               display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
               pointerEvents: "none", zIndex: 50,
             }}
           >
-            <TapHint color={currentItem.color} />
             <span style={{ color: currentItem.color, fontFamily: "Georgia, serif", fontSize: "0.7rem", opacity: 0.8 }}>
               нажми на карточку
             </span>
