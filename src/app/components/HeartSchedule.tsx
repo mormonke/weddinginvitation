@@ -56,8 +56,8 @@ function cardSize(n: number) {
 
 export function HeartSchedule({
   items,
-  title = "💕 Расписание",
-  subtitle = "Прокручивай — сердечко идёт по кривой",
+  title = "💕 Наш путь на этот вечер",
+  subtitle = "Нажми — сердечко идёт по кривой",
   height = "100vh",
   revealDelay = 600,
 }: HeartScheduleProps) {
@@ -236,7 +236,7 @@ export function HeartSchedule({
 
       {/* Content */}
       {count === 0 ? (
-        <IntroScreen title={title} subtitle={subtitle} isMobile={isMobile} />
+        <IntroScreen title={title} subtitle={subtitle} isMobile={isMobile} onTap={isMobile ? reveal : undefined} />
       ) : isMobile ? (
         <MobileLayout items={items} count={count} onActive={setActiveId} reveal={reveal} />
       ) : (
@@ -566,10 +566,12 @@ function MobileLayout({ items, count, onActive, reveal }: { items: ScheduleItem[
 
 // ─── Intro ────────────────────────────────────────────────────────────────────
 
-function IntroScreen({ title, subtitle, isMobile }: { title: string; subtitle: string; isMobile: boolean }) {
+function IntroScreen({ title, subtitle, isMobile, onTap }: { title: string; subtitle: string; isMobile: boolean; onTap?: () => void }) {
   return (
-    <div style={{
-      position: "absolute", inset: 0, zIndex: 10, pointerEvents: "none",
+    <div onClick={onTap} style={{
+      position: "absolute", inset: 0, zIndex: 10,
+      pointerEvents: isMobile ? "all" : "none",
+      cursor: isMobile ? "pointer" : "default",
       display: "flex", flexDirection: "column", alignItems: "center",
       justifyContent: "center", textAlign: "center", gap: 12, padding: "0 24px",
     }}>
@@ -581,7 +583,7 @@ function IntroScreen({ title, subtitle, isMobile }: { title: string; subtitle: s
         {title}
       </h1>
       <p style={{ color: "#a0627a", fontFamily: "Georgia, serif", fontSize: "clamp(0.85rem, 3vw, 1rem)", margin: 0 }}>
-        {isMobile ? "Свайпай вниз — карточки появляются одна за одной" : subtitle}
+        {isMobile ? "Нажми на экран — карточки появляются одна за одной" : subtitle}
       </p>
       <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.4 }}
         style={{ color: "#e8527a", fontSize: "1.5rem", marginTop: 8 }}>
