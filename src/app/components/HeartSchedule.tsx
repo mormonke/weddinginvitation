@@ -381,14 +381,22 @@ function MobileLayout({ items, count, onActive, reveal }: { items: ScheduleItem[
     });
   };
 
+  const handleAreaClick = () => {
+    if (count < items.length) reveal();
+  };
+
   return (
-    <div style={{
-      position: "absolute", inset: 0, zIndex: 10,
-      display: "flex", flexDirection: "column",
-      alignItems: "center", justifyContent: "center",
-      padding: "56px 20px 28px", // top padding leaves room for the badge
-      overflow: "hidden",
-    }}>
+    <div
+      onClick={handleAreaClick}
+      style={{
+        position: "absolute", inset: 0, zIndex: 10,
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        padding: "56px 20px 28px",
+        overflow: "hidden",
+        cursor: count < items.length ? "pointer" : "default",
+      }}
+    >
       {/* Heart counter at top */}
       <div style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
         <motion.span
@@ -427,7 +435,7 @@ function MobileLayout({ items, count, onActive, reveal }: { items: ScheduleItem[
                 scale: isLast || expandedId === item.id ? 1 : 0.97,
               }}
               transition={{ type: "spring", stiffness: 280, damping: 22, opacity: { duration: 0.2 } }}
-              onClick={() => toggleExpand(item.id)}
+              onClick={(e) => { e.stopPropagation(); toggleExpand(item.id); }}
               style={{
                 background: isLast || expandedId === item.id ? "#ffffff" : "rgba(255,255,255,0.86)",
                 border: `2px solid ${isLast || expandedId === item.id ? item.color + "80" : item.color + "20"}`,
