@@ -1,3 +1,4 @@
+import bgImageT from "../../../public/together.png";
 export function WelcomeLetterSection() {
   return (
     <section id="welcome" className="bg-[#faf7f2] py-24 md:py-32">
@@ -24,7 +25,7 @@ export function WelcomeLetterSection() {
           <div className="relative">
             <div className="aspect-[3/4] overflow-hidden bg-[#e8ddd3]">
               <img
-                src="https://drive.google.com/file/d/1WejroPC3bL5pTER1SbBgQrc_QuJGGUBP/view?usp=sharing"
+                src={bgImageT}
                 alt="IMG"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
