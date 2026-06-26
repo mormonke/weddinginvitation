@@ -1,4 +1,4 @@
-import bgImage from "../../../public/background.png";
+// import bgImage from "../../../public/background.png";
 
 export function HeroSection() {
   const handleRSVP = () => {
@@ -14,7 +14,7 @@ export function HeroSection() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src={bgImage}
+          src="https://drive.google.com/file/d/1tfw8jbBB3T6YfR1KoCTgX5chdsT9ScT6/view?usp=sharing"
           alt="Wedding ceremony aisle with floral arrangements"
           className="w-full h-full object-cover object-center"
         />
