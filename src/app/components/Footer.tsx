@@ -113,7 +113,7 @@ export function Footer() {
               className="text-[10px] uppercase tracking-[0.2em] text-[#5a4a3a]"
               style={{ fontFamily: "'Lato', sans-serif" }}
             >
-              Jannat Regency
+              Jannat Regency.
             </span>
             <span className="text-[#c9a87c] text-xs">✦</span>
           </div>

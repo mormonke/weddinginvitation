@@ -24,8 +24,8 @@ export function WelcomeLetterSection() {
           <div className="relative">
             <div className="aspect-[3/4] overflow-hidden bg-[#e8ddd3]">
               <img
-                src="https://instagram.ffru9-1.fna.fbcdn.net/v/t51.82787-15/518494147_18526033999039200_4704383381409676340_n.webp?_nc_cat=108&ig_cache_key=MzY3NjM0NzE2NjI1NjE2NjYxMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMTQ0MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=eNtv2YyHD9cQ7kNvwHdK0RW&_nc_oc=AdoPV3hr6ppRwmE9bXaJkPnQt2SeFwOVsiaue8TDrJt_NcLHk6GKYyOj4U0cEHeL89E&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.ffru9-1.fna&_nc_gid=qOrkGW_urNV2YoRptXXjtQ&_nc_ss=7a22e&oh=00_Af8mVwUT1rIuhPCHfWai9vU4VhEytOdhTrqYcqp5ff52UA&oe=6A303C73"
-                alt="Eleanor and James together in a garden"
+                src="https://drive.google.com/file/d/1WejroPC3bL5pTER1SbBgQrc_QuJGGUBP/view?usp=sharing"
+                alt="IMG"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
