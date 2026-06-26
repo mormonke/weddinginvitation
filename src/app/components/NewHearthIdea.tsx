@@ -1,163 +1,189 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 
-export interface ScheduleItem {
-  id: number;
-  time: string;
-  title: string;
-  description: string;
-  emoji: string;
-  color: string;
-  bgColor: string;
-}
+import type { ScheduleItem } from "./ScheduleData";
+import { getEventColors } from "./getEventColors";
 
 interface Props {
   items: ScheduleItem[];
   title?: string;
+  subtitle?: string;
 }
 
-export function StoryTimeline({
+export function WeddingTimeline({
   items,
-  title = "Наш день",
+  title = "Свадебный день",
+  subtitle = "История нашего вечера",
 }: Props) {
-  const [index, setIndex] = useState(0);
-  const current = items[index];
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const next = () => {
-    if (index < items.length - 1) setIndex(index + 1);
-  };
-
-  const prev = () => {
-    if (index > 0) setIndex(index - 1);
-  };
-
-  if (!current) return null;
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"],
+  });
 
   return (
-    <div
-      onClick={next}
+    <section
+      ref={ref}
       style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        background: `linear-gradient(160deg, ${current.bgColor}, #fff)`,
-        padding: 24,
-        textAlign: "center",
-        cursor: "pointer",
+        padding: "120px 20px",
+        background: "linear-gradient(180deg, #FAF7F2 0%, #FFFFFF 100%)",
       }}
     >
-      {/* Header */}
-      <div style={{ position: "absolute", top: 20, width: "100%", textAlign: "center" }}>
-        <div style={{ fontFamily: "Georgia, serif", color: "#a0627a" }}>
-          {title}
-        </div>
-
-        {/* Progress */}
-        <div style={{ marginTop: 8, display: "flex", gap: 6, justifyContent: "center" }}>
-          {items.map((_, i) => (
-            <div
-              key={i}
-              style={{
-                width: 18,
-                height: 4,
-                borderRadius: 999,
-                background: i <= index ? current.color : "#e7d6dd",
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Card */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current.id}
-          initial={{ opacity: 0, y: 20, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.25 }}
+      {/* HEADER */}
+      <div style={{ textAlign: "center", marginBottom: 80 }}>
+        <h2
           style={{
-            maxWidth: 420,
-            width: "100%",
-            background: "#fff",
-            borderRadius: 24,
-            padding: 24,
-            boxShadow: "0 10px 40px rgba(0,0,0,0.08)",
+            fontFamily: "Georgia, serif",
+            fontSize: "2.4rem",
+            margin: 0,
+            color: "#3d1a24",
           }}
         >
-          {/* Emoji */}
-          <div style={{ fontSize: 42, marginBottom: 12 }}>
-            {current.emoji}
-          </div>
-
-          {/* Time */}
-          <div
-            style={{
-              color: current.color,
-              fontFamily: "Georgia, serif",
-              fontWeight: 600,
-              marginBottom: 6,
-            }}
-          >
-            {current.time}
-          </div>
-
-          {/* Title */}
-          <h2
-            style={{
-              fontFamily: "Georgia, serif",
-              margin: 0,
-              fontSize: "1.4rem",
-              color: "#3d1a24",
-            }}
-          >
-            {current.title}
-          </h2>
-
-          {/* Description */}
-          <p
-            style={{
-              marginTop: 12,
-              color: "#7a5a68",
-              fontFamily: "Georgia, serif",
-              lineHeight: 1.5,
-            }}
-          >
-            {current.description}
-          </p>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Navigation hint */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 20,
-          fontSize: 12,
-          color: "#a0627a",
-          fontFamily: "Georgia, serif",
-          opacity: 0.8,
-        }}
-      >
-        тап — дальше · свайп можно добавить позже
+          {title}
+        </h2>
+        <p
+          style={{
+            marginTop: 10,
+            fontFamily: "Georgia, serif",
+            color: "#a0627a",
+          }}
+        >
+          {subtitle}
+        </p>
       </div>
 
-      {/* Prev click zone (optional) */}
+      {/* WRAPPER */}
       <div
-        onClick={(e) => {
-          e.stopPropagation();
-          prev();
-        }}
         style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width: "30%",
-          height: "100%",
+          maxWidth: 900,
+          margin: "0 auto",
+          position: "relative",
+          paddingLeft: 40,
         }}
-      />
-    </div>
+      >
+        {/* LINE BACKGROUND */}
+        <div
+          style={{
+            position: "absolute",
+            left: 18,
+            top: 0,
+            bottom: 0,
+            width: 2,
+            background: "rgba(232,82,122,0.12)",
+          }}
+        />
+
+        {/* PROGRESS LINE (Apple style) */}
+        <motion.div
+          style={{
+            position: "absolute",
+            left: 18,
+            top: 0,
+            width: 2,
+            background: "linear-gradient(#e8527a, #c060a0)",
+            transformOrigin: "top",
+            scaleY: scrollYProgress,
+          }}
+        />
+
+        {/* ITEMS */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 90 }}>
+          {items.map((item, i) => {
+            const colors = getEventColors(item.type);
+
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6 }}
+                style={{
+                  display: "flex",
+                  gap: 20,
+                  alignItems: "flex-start",
+                  position: "relative",
+                }}
+              >
+                {/* DOT */}
+                <motion.div
+                  initial={{ scale: 0.8 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  style={{
+                    width: 14,
+                    height: 14,
+                    borderRadius: "50%",
+                    background: colors.color,
+                    marginTop: 6,
+                    boxShadow: `0 0 0 8px rgba(192, 138, 122, 0.12)`,
+                    zIndex: 2,
+                  }}
+                />
+
+                {/* CARD */}
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  style={{
+                    background: "rgba(255,255,255,0.85)",
+                    backdropFilter: "blur(10px)",
+                    borderRadius: 22,
+                    padding: "20px 22px",
+                    border: "1px solid rgba(192, 138, 122, 0.15)",
+                    boxShadow: "0 12px 40px rgba(0,0,0,0.06)",
+                    maxWidth: 520,
+                    width: "100%",
+                    
+                  }}
+                >
+                  {/* TIME */}
+                  <div
+                    style={{
+                      fontFamily: "Georgia, serif",
+                      color: colors.color,
+                      fontWeight: 600,
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    {item.time}
+                  </div>
+
+                  {/* TITLE */}
+                  <div
+                    style={{
+                      marginTop: 6,
+                      fontFamily: "Georgia, serif",
+                      fontSize: "1.2rem",
+                      fontWeight: 700,
+                      color: "#3d1a24",
+                      display: "flex",
+                      gap: 10,
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: 20 }}>{item.emoji}</span>
+                    {item.title}
+                  </div>
+
+                  {/* DESCRIPTION */}
+                  <p
+                    style={{
+                      marginTop: 10,
+                      fontFamily: "Georgia, serif",
+                      fontSize: "0.95rem",
+                      color: "#7a5a68",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {item.description}
+                  </p>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }

@@ -4,9 +4,8 @@ import { HeroSection } from "./components/HeroSection";
 import { WelcomeLetterSection } from "./components/WelcomeLetterSection";
 import { VenueSection } from "./components/VenueSection";
 import { RSVPSection } from "./components/RSVPFormSection";
-// import { HeartSchedule } from "./components/HeartSchedule";
 import { Footer } from "./components/Footer";
-import { StoryTimeline } from "./components/NewHearthIdea";
+import { WeddingTimeline } from "./components/NewHearthIdea";
 import { SCHEDULE } from "./components/ScheduleData";
 
 
@@ -31,7 +30,7 @@ export default function App() {
           title="💕 Расписание дня"
           subtitle="Наш путь на вечер"
           /> */}
-          <StoryTimeline items={SCHEDULE}/>
+          <WeddingTimeline items={SCHEDULE}/>
         <VenueSection />
         <RSVPSection />
       </main>
