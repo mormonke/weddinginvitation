@@ -10,6 +10,20 @@ interface Props {
 
 const PRIMARY = "#395111";
 
+function StarIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={PRIMARY}
+      style={{ display: "block" }}
+    >
+      <path d="M12 2l2.4 6.9L21 12l-6.6 3.1L12 22l-2.4-6.9L3 12l6.6-3.1L12 2z" />
+    </svg>
+  );
+}
+
 export function WeddingTimeline({
   items,
   title = "Свадебный день",
@@ -100,20 +114,33 @@ export function WeddingTimeline({
                 marginBottom: 70,
               }}
             >
-              {/* DOT */}
+              {/* DOT (SVG STAR) */}
               <div
                 style={{
                   position: "absolute",
-                  left: isMobile ? "20px" : "50%",
-                  top: 18,
+                  left: isMobile ? "18px" : "50%",
+                  top: 16,
                   transform: isMobile ? "none" : "translateX(-50%)",
-                  width: 10,
-                  height: 10,
+
+                  width: isMobile ? 24 : 10,
+                  height: isMobile ? 24 : 10,
+
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+
+                  background: isMobile
+                    ? "rgba(57,81,17,0.08)"
+                    : PRIMARY,
+                  boxShadow: isMobile
+                    ? "none"
+                    : "0 0 0 6px rgba(57,81,17,0.12)",
+
                   borderRadius: "50%",
-                  background: PRIMARY,
-                  boxShadow: "0 0 0 6px rgba(57,81,17,0.12)",
                 }}
-              />
+              >
+                <StarIcon size={isMobile ? 14 : 0} />
+              </div>
 
               {/* CARD */}
               <motion.div
