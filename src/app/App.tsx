@@ -25,12 +25,7 @@ export default function App() {
       <main>
         <HeroSection />
         <WelcomeLetterSection />
-        {/* <HeartSchedule
-         items={SCHEDULE}
-          title="💕 Расписание дня"
-          subtitle="Наш путь на вечер"
-          /> */}
-          <WeddingTimeline items={SCHEDULE}/>
+             <WeddingTimeline items={SCHEDULE}/>
         <VenueSection />
         <RSVPSection />
       </main>

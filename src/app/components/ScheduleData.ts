@@ -10,7 +10,6 @@ export interface ScheduleItem {
   time: string;
   title: string;
   description: string;
-  emoji: string;
 }
 
 export const SCHEDULE: ScheduleItem[] = [
@@ -20,7 +19,6 @@ export const SCHEDULE: ScheduleItem[] = [
     time: "15:00",
     title: "Сбор гостей",
     description: "Рады видеть вас и начать вместе этот особенный вечер.",
-    emoji: "🎉",
   },
   {
     id: 1,
@@ -28,7 +26,6 @@ export const SCHEDULE: ScheduleItem[] = [
     time: "16:00",
     title: "Церемония бракосочетания",
     description: "Главный момент нашего дня, когда мы скажем друг другу “да”.",
-    emoji: "🤍",
   },
   {
     id: 2,
@@ -36,7 +33,6 @@ export const SCHEDULE: ScheduleItem[] = [
     time: "17:00",
     title: "Банкет",
     description: "Продолжение праздника в атмосфере уюта, смеха и торжества.",
-    emoji: "🥂",
   },
   {
     id: 3,
@@ -44,6 +40,5 @@ export const SCHEDULE: ScheduleItem[] = [
     time: "21:00 - 22:00",
     title: "Конец вечера",
     description: "Наш праздник завершается, но воспоминания останутся навсегда.",
-    emoji: "🌙",
   },
 ];
