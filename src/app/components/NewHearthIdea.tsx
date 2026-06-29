@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import type { ScheduleItem } from "./ScheduleData";
 
 interface Props {
@@ -14,6 +15,15 @@ export function WeddingTimeline({
   title = "Свадебный день",
   subtitle = "История нашего вечера",
 }: Props) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <section
       style={{
@@ -27,7 +37,7 @@ export function WeddingTimeline({
         <h2
           style={{
             fontFamily: "Georgia, serif",
-            fontSize: "2.6rem",
+            fontSize: "clamp(2rem, 4vw, 2.6rem)",
             color: "#1f2a14",
             margin: 0,
           }}
@@ -40,6 +50,7 @@ export function WeddingTimeline({
             marginTop: 10,
             fontFamily: "Georgia, serif",
             color: "rgba(57,81,17,0.75)",
+            fontSize: "clamp(0.9rem, 2vw, 1rem)",
           }}
         >
           {subtitle}
@@ -59,12 +70,12 @@ export function WeddingTimeline({
         <div
           style={{
             position: "absolute",
-            left: "50%",
+            left: isMobile ? "20px" : "50%",
             top: 0,
             bottom: 0,
             width: 1,
-            background: `rgba(57,81,17,0.25)`,
-            transform: "translateX(-50%)",
+            background: "rgba(57,81,17,0.25)",
+            transform: isMobile ? "none" : "translateX(-50%)",
           }}
         />
 
@@ -80,7 +91,11 @@ export function WeddingTimeline({
               transition={{ duration: 0.5 }}
               style={{
                 display: "flex",
-                justifyContent: isLeft ? "flex-start" : "flex-end",
+                justifyContent: isMobile
+                  ? "center"
+                  : isLeft
+                  ? "flex-start"
+                  : "flex-end",
                 position: "relative",
                 marginBottom: 70,
               }}
@@ -89,11 +104,11 @@ export function WeddingTimeline({
               <div
                 style={{
                   position: "absolute",
-                  left: "50%",
+                  left: isMobile ? "20px" : "50%",
                   top: 18,
-                  transform: "translateX(-50%)",
-                  width: 9,
-                  height: 9,
+                  transform: isMobile ? "none" : "translateX(-50%)",
+                  width: 10,
+                  height: 10,
                   borderRadius: "50%",
                   background: PRIMARY,
                   boxShadow: "0 0 0 6px rgba(57,81,17,0.12)",
@@ -104,21 +119,21 @@ export function WeddingTimeline({
               <motion.div
                 whileHover={{ scale: 1.015 }}
                 style={{
-                  width: "42%",
-                  background: "rgba(255,255,255,0.72)",
-                  backdropFilter: "blur(8px)",
+                  width: isMobile ? "90%" : "42%",
+                  background: "rgba(255,255,255,0.75)",
+                  backdropFilter: "blur(10px)",
                   borderRadius: 18,
                   padding: "20px 22px",
                   border: "1px solid rgba(57,81,17,0.10)",
                   boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
-                  textAlign: isLeft ? "right" : "left",
+                  textAlign: isMobile ? "left" : isLeft ? "right" : "left",
                 }}
               >
                 {/* TIME */}
                 <div
                   style={{
                     fontFamily: "Georgia, serif",
-                    fontSize: "0.85rem",
+                    fontSize: "clamp(0.85rem, 2vw, 0.95rem)",
                     color: PRIMARY,
                     fontWeight: 600,
                   }}
@@ -131,7 +146,7 @@ export function WeddingTimeline({
                   style={{
                     marginTop: 6,
                     fontFamily: "Georgia, serif",
-                    fontSize: "1.15rem",
+                    fontSize: "clamp(1rem, 2.5vw, 1.15rem)",
                     fontWeight: 700,
                     color: "#1f2a14",
                   }}
@@ -144,7 +159,7 @@ export function WeddingTimeline({
                   style={{
                     marginTop: 10,
                     fontFamily: "Georgia, serif",
-                    fontSize: "0.9rem",
+                    fontSize: "clamp(0.85rem, 2vw, 0.95rem)",
                     color: "rgba(31,42,20,0.72)",
                     lineHeight: 1.6,
                   }}
