@@ -25,7 +25,7 @@ export function WeddingTimeline({
   }, []);
 
   return (
-    <section style={{ padding: "120px 20px" }}>
+    <section id="schedule" style={{ padding: "120px 20px" }}>
       {/* HEADER */}
       <div style={{ textAlign: "center", marginBottom: 100 }}>
         <h2
