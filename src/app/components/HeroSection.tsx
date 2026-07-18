@@ -68,7 +68,7 @@ export function HeroSection() {
         </div>
 
         {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        {/* <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={handleRSVP}
             className="px-10 py-3.5 text-[#E7EAE3] text-[11px] uppercase tracking-[0.25em] hover:bg-[#3951118a] transition-colors"
@@ -76,7 +76,7 @@ export function HeroSection() {
           >
             Заполнить анкету
           </button>
-        </div>
+        </div> */}
 
         {/* Scroll indicator */}
         <div className="mt-16 flex flex-col items-center gap-2 opacity-60">
