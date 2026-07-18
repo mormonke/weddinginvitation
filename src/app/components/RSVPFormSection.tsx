@@ -1,4 +1,4 @@
-const GOOGLE_FORM_URL = "https://forms.google.com"; 
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdeBWEMrwNBlVwW0FAyqzcWkeP5k32nQl7dRcEyCC0AoSK2Rg/viewform?usp=publish-editor"; 
 
 export function RSVPSection() {
   return (
