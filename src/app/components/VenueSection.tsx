@@ -31,14 +31,14 @@ export function VenueSection() {
           <div className="flex flex-col gap-8">
             <h2
               className="text-[clamp(1.8rem,4vw,3rem)] leading-tight text-[#2c2416]"
-              style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 400 }}
+              style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 400 }} translate="no"
             >
               Jannat Regency
             </h2>
 
             <p
               className="text-[#7a6a58] leading-relaxed"
-              style={{ fontFamily: "'Lato', sans-serif", fontSize: "0.95rem" }}
+              style={{ fontFamily: "'Lato', sans-serif", fontSize: "0.95rem" }} translate="no"
             >
              Расположенный в сердце города Бишкек, Jannat Regency сочетает в себе современную элегантность и атмосферу утончённого восточного гостеприимства. Этот отель станет прекрасным местом для нашего особенного дня, где каждая деталь будет наполнена теплом, радостью и атмосферой праздника.
             </p>
@@ -48,7 +48,7 @@ export function VenueSection() {
               {venueDetails.map((detail) => (
                 <div
                   key={detail.label}
-                  className="flex gap-4 py-4 border-b border-[rgba(122,92,74,0.12)]"
+                  className="flex gap-4 py-4 border-b border-[rgba(122,92,74,0.12)]" translate="no"
                 >
                   <span
                     className="w-28 shrink-0 text-[10px] uppercase tracking-[0.2em] text-[#c9a87c] pt-0.5"

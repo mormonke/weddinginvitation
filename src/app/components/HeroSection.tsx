@@ -52,7 +52,7 @@ export function HeroSection() {
         </div>
         <h1
           className="text-[clamp(3.5rem,10vw,7rem)] leading-none text-[#E7EAE3] drop-shadow-sm mb-10"
-          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 400 }}
+          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 400 }} translate="no"
         >
           Даниил
         </h1>
@@ -64,7 +64,7 @@ export function HeroSection() {
         >
           <span className="text-[13px] tracking-widest uppercase">Август 29, 2026</span>
           <span className="hidden sm:block w-1 h-1 rounded-full bg-[#E7EAE3]" />
-          <span className="text-[13px] tracking-widest uppercase">Jannat Regency</span>
+          <span className="text-[13px] tracking-widest uppercase" translate="no">Jannat Regency</span>
         </div>
 
         {/* CTA buttons */}
@@ -72,7 +72,7 @@ export function HeroSection() {
           <button
             onClick={handleRSVP}
             className="px-10 py-3.5 text-[#E7EAE3] text-[11px] uppercase tracking-[0.25em] hover:bg-[#3951118a] transition-colors"
-            style={{ fontFamily: "'Lato', sans-serif" }}
+            style={{ fontFamily: "'Lato', sans-serif" }} translate="no"
           >
             Заполнить анкету
           </button>
@@ -83,7 +83,7 @@ export function HeroSection() {
           <div className="w-px h-10 bg-[#ffffff] animate-pulse" />
           <span
             className="text-[9px] uppercase tracking-[0.3em] text-[#ffffff]"
-            style={{ fontFamily: "'Lato', sans-serif" }}
+            style={{ fontFamily: "'Lato', sans-serif" }} translate="no"
           >
             Scroll
           </span>
