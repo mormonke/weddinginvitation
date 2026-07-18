@@ -35,7 +35,7 @@ export function HeroSection() {
 
         {/* Names */}
         <h1
-          className="text-[clamp(3.5rem,10vw,7rem)] leading-none text-[#E7EAE3] drop-shadow-sm mb-4"
+          className="text-[clamp(3.5rem,10vw,7rem)] leading-none text-[#E7EAE3] drop-shadow-sm mb-4" translate="no"
           style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 400 }}
         >
           Илона
