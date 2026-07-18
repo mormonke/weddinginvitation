@@ -16,7 +16,7 @@ export const SCHEDULE: ScheduleItem[] = [
   {
     id: 0,
     type: "guest",
-    time: "15:00",
+    time: "15:30",
     title: "Сбор гостей",
     description: "Рады видеть вас и начать вместе этот особенный вечер.",
   },
