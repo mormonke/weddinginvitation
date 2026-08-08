@@ -86,7 +86,7 @@ export function Footer() {
               Анкета до
             </p>
             <p style={{ fontFamily: "'EB Garamond', serif", fontSize: "0.95rem", color: "#c9b8a8" }}>
-              1 Августа, 2026
+              15 Августа, 2026
             </p>
             <button
               onClick={() => handleNav("#rsvp")}

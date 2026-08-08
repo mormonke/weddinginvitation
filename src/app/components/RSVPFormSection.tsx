@@ -32,7 +32,7 @@ export function RSVPSection() {
             className="text-[#7a6a58] leading-relaxed"
             style={{ fontFamily: "'Lato', sans-serif", fontSize: "0.95rem" }}
           >
-            Просим вас подтвердить своё присутствие до <strong className="text-[#7a5c4a]"> 1 августа 2026 года. </strong>.
+            Просим вас подтвердить своё присутствие до <strong className="text-[#7a5c4a]"> 15 августа 2026 года. </strong>.
             Мы будем счастливы разделить этот особенный день вместе с вами.
           </p>
           <p
